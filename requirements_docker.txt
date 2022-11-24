@@ -1,0 +1,7 @@
+transformers==4.19.2
+diffusers
+invisible-watermark 
+k-diffusion @ git+https://github.com/crowsonkb/k-diffusion.git
+gfpgan @ git+https://github.com/TencentARC/GFPGAN.git
+updog
+nicegui

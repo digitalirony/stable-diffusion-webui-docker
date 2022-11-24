@@ -1,0 +1,22 @@
+services:
+  sd-web-ui:
+    build: .
+    image: gcr.io/stablediffusion-369106/sd-webui
+    ports:
+      - "80:80"
+    network_mode: "host"
+    group_add:
+      - video
+    ipc: "host"
+    security_opt:
+      - label:seccomp:unconfined
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+
+
