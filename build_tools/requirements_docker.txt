@@ -1,0 +1,7 @@
+transformers==4.19.2
+diffusers
+invisible-watermark 
+k-diffusion @ git+https://github.com/crowsonkb/k-diffusion.git@60e5042ca0da89c14d1dd59d73883280f8fce991
+gfpgan @ git+https://github.com/TencentARC/GFPGAN.git@8d2447a2d918f8eba5a4a01463fd48e45126a379
+clip @ git+https://github.com/openai/CLIP.git@d50d76daa670286dd6cacf3bcd80b5e4823fc8e1
+updog

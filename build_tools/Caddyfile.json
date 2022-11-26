@@ -1,0 +1,98 @@
+{
+  "admin": {
+    "disabled": true
+  },
+  "apps": {
+    "dynamic_dns": {
+      "domains": {
+        "example.duckdns.org": ["@"]
+      },
+      "dns_provider":{
+        "name": "duckdns",
+        "api_token": "notoken"
+      },
+      "versions": {
+        "ipv6": false
+      }
+    },
+    "tls":{
+      "automation":{
+        "policies":[
+        {
+          "subjects": [
+            "*.example.duckdns.org"
+          ],
+          "issuers":[{
+            "module": "acme",
+            "challenges": {
+              "dns": {
+                "provider": {
+                  "name": "duckdns",
+                  "api_token": "notoken"
+                }
+              }
+            }
+          }]
+        }]
+      }
+    },
+    "http":{
+      "servers":{
+        "default":{ 
+          "listen": [":443"],
+          "routes": [ 
+          { 
+            "handle": [{
+              "handler": "authentication",
+              "providers": {
+                "http_basic": {
+                  "accounts": [{
+                    "password": "$2a$14$HGVYwarRnH1uID8cxQqjs.rwoTI8KIlaRJOyw.zzwfFs1wHcHqAMy",
+                    "username": "admin"
+                  }],
+                  "hash": {
+                    "algorithm": "bcrypt"
+                  },
+                  "hash_cache": {}
+                }
+              }
+            }]
+          },
+          {
+            "match": [{
+              "host": ["example.duckdns.org"]
+            }],
+            "handle": [{
+              "handler": "reverse_proxy",
+              "upstreams": [{
+                "dial": "localhost:8001"
+              }]
+            }]
+          },
+          {
+            "match": [{
+              "host": ["updog.example.duckdns.org"]
+            }],
+            "handle": [{
+              "handler": "reverse_proxy",
+              "upstreams": [{
+                "dial": "localhost:9090"
+              }]
+            }]
+          },
+          {
+            "match": [{
+              "host": ["webui.example.duckdns.org"]
+            }],
+            "handle": [{
+              "handler": "reverse_proxy",
+              "upstreams": [{
+                "dial": "localhost:7860"
+              }]
+            }]
+          }]
+        }
+      }
+    }  
+  }
+} 

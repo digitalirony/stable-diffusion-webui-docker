@@ -1,8 +1,0 @@
-:80
-basicauth * {
-  admin {$WEB_PASS:$2a$12$i4HQ3Um.f0jENfR1rDw2p.fGB8S6huZAQMftn9YuIcFMrk8y671ti} 
-}
-  reverse_proxy /webui/* :7860
-  reverse_proxy /updog/* :8080
-  reverse_proxy * :8001
-

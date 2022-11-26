@@ -4,6 +4,7 @@ services:
     image: gcr.io/stablediffusion-369106/sd-webui
     ports:
       - "80:80"
+      - "443:443"
     network_mode: "host"
     group_add:
       - video

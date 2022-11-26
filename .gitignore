@@ -1,0 +1,5 @@
+#ignore bin
+bin
+
+#ignore the caddy bin
+build_tools/caddy

@@ -17,6 +17,8 @@ This builds Automatic1111 stable-diffusion-webui into an easy to use docker imag
 
 ## Deployment
 
+You need to go to duckdns.org and sign up for a new FREE account. Create a subdomain. Get your API token and save both where you will find them later.
+
 Please see [Automatic111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) for more information on how to use this app.
 
 If you want to deploy this project, you don't wan this repo. You want to get the latest image from the registry:
@@ -24,33 +26,33 @@ If you want to deploy this project, you don't wan this repo. You want to get the
 ```gcr.io/stablediffusion-369106/sd-webui```
 
 
-The default login is ```admin:stablediffusion```
+Set the ADMIN_PASS, DUCK_DOMAIN and DUCK_TOKEN . If your domain is myAwesomedomain.duckdns.org, only supply 'myAwesomedomain' I already know about the duckdns.org part.  Also open port 80 and 443 as you see here:
 
-If you want to set your own password, you should generate a bcrypt hash of whatever password you want. Then simply pass it as an ENV variable to your docker run:
-
-```WEB_PASS='$2a$12$i4HQ3Um.f0jENfR1rDw2p.fGB8S6huZAQMftn9YuIcFMrk8y671ti' docker run gcr.io/stablediffusion-369106/sd-webui```
+```ADMIN_PASS='myBrandSpankinNewPassW0rd' DUCK_DOMAIN="myAwesemedomain" DUCK_TOKEN="abc123aaabbbccc111222333" docker run -p 80:80 -p 443:443 gcr.io/stablediffusion-369106/sd-webui```
 
 
-Once deployed simply visit ```Http://<your-ip-or-domain>``` (HTTPS/ssl will come later)
+Once deployed simply visit ```Https://<your-ip-or-domain>```
+
+Before you can go any further make sure you go to updog(see below), and upload your models. SD/webui will NOT start until you have provided models. If you install any plugins use the dashboard to restart the webui to finish installing them. 
 
 At the Interface here you can start and stop the services which consist of:
-- caddy  - This is the webserver that sets up the reverse proxy for the rest
-- updog ```Http://<your-ip-or-domain>/updog``` - Use this to upload your models for SD
-- webui ```Http://<your-ip-or-domain>/webui``` - Once you have uploaded your models start/restart the service and then visit this url to begin using
+- caddy  - This is the webserver that sets up the reverse proxy for the rest if you stop this, you will wish you hadn't
+- updog ```Https://updog.yourdomain.duckdns.org``` - Use this to upload your models for SD
+- webui ```Https://webui.yourdomain.duckdns.org``` - Once you have uploaded your models start/restart the service and then visit this url to begin using
+
+
 ## Building Your Own
 #### REQUIREMENTS:
 - [Docker with compose](Https://docker.com)
-
+- Golang
 
 
 If you want to modify this build clone this repo:
 
 ```git clone git@github.com:digitalirony/stable-diffusion-webui-docker.git```
 
-Then simply use docker compose to build the image:
+Then simply use my shitty shell script:
 
-``` docker compose build```
+``` ./build.sh```
 
 How to setup and use docker is beyond the scope of this document. See the helpful documents over at [Dockers Website](https://docker.com)
-
-    
