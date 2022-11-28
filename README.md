@@ -28,12 +28,17 @@ If you want to deploy this project, you don't wan this repo. You want to get the
 
 Set the ADMIN_PASS, DUCK_DOMAIN and DUCK_TOKEN . If your domain is myAwesomedomain.duckdns.org, only supply 'myAwesomedomain' I already know about the duckdns.org part.  Also open port 80 and 443 as you see here:
 
-```ADMIN_PASS='myBrandSpankinNewPassW0rd' DUCK_DOMAIN="myAwesemedomain" DUCK_TOKEN="abc123aaabbbccc111222333" docker run -p 80:80 -p 443:443 gcr.io/stablediffusion-369106/sd-webui```
+```docker run -e ADMIN_PASS='myBrandSpankinNewPassW0rd' -e DUCK_DOMAIN="myAwesemedomain" -e DUCK_TOKEN="abc123aaabbbccc111222333"-p 80:80 -p 443:443 gcr.io/stablediffusion-369106/sd-webui```
 
 
 Once deployed simply visit ```Https://<your-ip-or-domain>```
 
 Before you can go any further make sure you go to updog(see below), and upload your models. SD/webui will NOT start until you have provided models. If you install any plugins use the dashboard to restart the webui to finish installing them. 
+
+
+When uploading your models via updog, PLEASE NOTE: updog is hella simple, and doesn't show progress. Once you click on upload, just wait and be patient, especially for large files. It will take a while if your connection is slow. The UI will update once the file is uploaded. 
+
+Future versions will have a better way of supplying models. 
 
 At the Interface here you can start and stop the services which consist of:
 - caddy  - This is the webserver that sets up the reverse proxy for the rest if you stop this, you will wish you hadn't

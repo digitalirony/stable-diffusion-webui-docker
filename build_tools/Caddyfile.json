@@ -1,7 +1,4 @@
 {
-  "admin": {
-    "disabled": true
-  },
   "apps": {
     "dynamic_dns": {
       "domains": {

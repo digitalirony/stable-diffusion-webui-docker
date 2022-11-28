@@ -2,6 +2,8 @@
 apt-get update 
 apt-get -y install git supervisor curl 
 mkdir -p /var/log/supervisor
+cd /sdui
+chmod +x init.sh 
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 mkdir stable-diffusion-webui/repositories
 cd stable-diffusion-webui/repositories
