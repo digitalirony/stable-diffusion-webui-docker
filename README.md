@@ -28,7 +28,7 @@ If you want to deploy this project, you don't wan this repo. You want to get the
 
 Set the ADMIN_PASS, DUCK_DOMAIN and DUCK_TOKEN . If your domain is myAwesomedomain.duckdns.org, only supply 'myAwesomedomain' I already know about the duckdns.org part.  Also open port 80 and 443 as you see here:
 
-```docker run -e ADMIN_PASS='myBrandSpankinNewPassW0rd' -e DUCK_DOMAIN="myAwesemedomain" -e DUCK_TOKEN="abc123aaabbbccc111222333"-p 80:80 -p 443:443 gcr.io/stablediffusion-369106/sd-webui```
+```docker run --gpus all --ipc=host -e ADMIN_PASS=myBrandSpankinNewPassW0rd -e DUCK_DOMAIN=myAwesemedomain -e DUCK_TOKEN=abc123aaabbbccc111222333 -p 80:80 -p 443:443 gcr.io/stablediffusion-369106/sd-webui```
 
 
 Once deployed simply visit ```Https://<your-ip-or-domain>```
