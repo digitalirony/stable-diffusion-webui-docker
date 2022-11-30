@@ -1,6 +1,6 @@
 #!/bin/bash
 apt-get update 
-apt-get -y install git supervisor curl 
+apt-get -y install git supervisor curl vim libgl1 libglib2.0-0 
 mkdir -p /var/log/supervisor
 cd /sdui
 chmod +x init.sh 
